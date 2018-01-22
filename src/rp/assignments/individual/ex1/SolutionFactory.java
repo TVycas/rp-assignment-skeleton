@@ -34,22 +34,22 @@ public class SolutionFactory {
 
 	public static StoppableRunnable createOctagonController(
 			DifferentialDriveRobot _robot, Float _sideLength) {
-		return null;
+		return new OctagonController(_robot, _sideLength);
 	}
 
 	public static StoppableRunnable createNonagonController(
 			DifferentialDriveRobot _robot, Float _sideLength) {
-		return null;
+		return new NanagonController(_robot, _sideLength);
 	}
 
 	public static ControllerWithTouchSensor createBumperController(
 			DifferentialDriveRobot _robot) {
-		return null;
+		return new BumperController(_robot);
 	}
 
 	public static EventBasedTouchSensor createVirtualBumper(
 			RangeFinderDescription _desc, RangeFinder _ranger, Float _touchRange) {
-		return null;
+		return new VirtualBumper(_desc, _ranger, _touchRange);
 	}
 
 }

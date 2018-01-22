@@ -15,14 +15,14 @@ import rp.systems.StoppableRunnable;
  * @author Nick Hawes
  *
  */
-public class PentagonController implements StoppableRunnable {
+public class OctagonController implements StoppableRunnable {
 
 	private DifferentialDriveRobot robot;
 	private float sideLength;
-	private int cornerAngle = cornerAngle = 72;
-	private final int NUMB_OF_CORNERS = 5;
+	private int cornerAngle = 45;
+	private final int NUMB_OF_CORNERS = 8;
 
-	public PentagonController(DifferentialDriveRobot robot, float sideLength) {
+	public OctagonController(DifferentialDriveRobot robot, float sideLength) {
 		// TODO Auto-generated method stub
 		this.robot = robot;
 		this.sideLength = sideLength;

@@ -43,7 +43,7 @@ public class IndividualAssignment1Simulation {
 		// starting pose. The return value from addRobot is the object you use
 		// to actually control the
 		// simulated robot.
-		Pose startingPose = new Pose(0.5f, 0.5f, 0);
+		Pose startingPose = new Pose(7.0f, 3.0f, 0);
 		MobileRobotWrapper<DifferentialDriveRobot> wrapper = sim.addRobot(
 				robotConfig, startingPose);
 
@@ -51,9 +51,12 @@ public class IndividualAssignment1Simulation {
 		// robot. We pass it the robot object from the simulator.
 		// It is important to note that this controller could also be used with
 		// a real robot provided you have a configuration object to describe it.
-		PentagonController controller = new PentagonController(
-				wrapper.getRobot(), 0.5f);
-
+		
+		
+		BumperController controller = new BumperController(
+				wrapper.getRobot());
+		
+		sim.addTouchSensorListener(wrapper, controller);
 		// This call attaches theevent listener implemented by the controller
 		// to the touch sensor on the simulated robot
 		// Note that this will only compile if you controller implements
