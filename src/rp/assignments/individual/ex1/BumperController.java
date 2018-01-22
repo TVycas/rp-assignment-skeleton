@@ -7,36 +7,31 @@ import rp.systems.ControllerWithTouchSensor;
 import rp.util.Rate;
 
 public class BumperController implements ControllerWithTouchSensor {
-	
-	
+
 	private final DifferentialPilot pilot;
 	private boolean runRobot;
 	Rate r = new Rate(40);
 	private boolean pressed = false;
-	//Rate t = new Rate(1000);
 
 	public BumperController(DifferentialDriveRobot robot) {
 		pilot = robot.getDifferentialPilot();
-		//pilot.setTravelSpeed(1f);
-		//pilot.setRotateSpeed(50);
 	}
 
 	@Override
 	public void stop() {
 		runRobot = false;
-		pilot.stop();	
+		pilot.stop();
 	}
 
 	@Override
 	public void run() {
-		runRobot = true;	
-		
+		runRobot = true;
+
 		while (runRobot) {
 			pilot.forward();
 			r.sleep();
-			
-			if(pressed) {
-				//stop();
+
+			if (pressed) {
 				pilot.stop();
 				pilot.travel(-0.1);
 				pilot.stop();
@@ -45,15 +40,12 @@ public class BumperController implements ControllerWithTouchSensor {
 				pressed = false;
 			}
 			r.sleep();
-		}	
+		}
 	}
 
 	@Override
 	public void sensorPressed(TouchSensorEvent _e) {
 		pressed = true;
-		
-		//run();
-		
 	}
 
 	@Override

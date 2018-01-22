@@ -22,9 +22,7 @@ public class VirtualBumper extends Thread implements EventBasedTouchSensor, Stop
 	private final Float touchRange;
 	private float oldValue;
 	private float newValue;
-	//private TouchSensorListener listener;
-	private ArrayList <TouchSensorListener> listeners = new ArrayList<TouchSensorListener>();
-	// private final DifferentialPilot pilot;,
+	private ArrayList<TouchSensorListener> listeners = new ArrayList<TouchSensorListener>();
 
 	public VirtualBumper(RangeFinderDescription _desc, RangeFinder _ranger, Float _touchRange) {
 		this.desc = _desc;
@@ -32,7 +30,6 @@ public class VirtualBumper extends Thread implements EventBasedTouchSensor, Stop
 		this.touchRange = _touchRange;
 		start();
 	}
-	
 
 	@Override
 	public void run() {
@@ -44,7 +41,7 @@ public class VirtualBumper extends Thread implements EventBasedTouchSensor, Stop
 				wasPressed = true;
 				newValue = ranger.getRange();
 				TouchSensorEvent e = new TouchSensorEvent(oldValue, newValue);
-				for(int i = 0; i < listeners.size(); i++)
+				for (int i = 0; i < listeners.size(); i++)
 					listeners.get(i).sensorPressed(e);
 			}
 
@@ -53,7 +50,7 @@ public class VirtualBumper extends Thread implements EventBasedTouchSensor, Stop
 				oldValue = newValue;
 				newValue = ranger.getRange();
 				TouchSensorEvent e = new TouchSensorEvent(oldValue, newValue);
-				for(int i = 0; i < listeners.size(); i++) {
+				for (int i = 0; i < listeners.size(); i++) {
 					listeners.get(i).sensorReleased(e);
 					listeners.get(i).sensorBumped(e);
 				}
